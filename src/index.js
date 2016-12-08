@@ -23,7 +23,7 @@ var skillName = "Walter's Lunch Menu:";
 var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like? ";
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch on the 28th of March? What is the lunch menu next week? What's for lunch tomorrow?  What would you like to know?";
+var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch on the 28th of March? What's for lunch tomorrow?  What would you like to know?";
 
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about lunch one";
 
@@ -45,10 +45,10 @@ var scheduledEventMessage = "scheduled for this time frame. I've sent the detail
 var firstThreeMessage = "Here are the first %d. ";
 
 // the values within the {} are swapped out for variables
-var eventSummary = "The %s lunch is, %s at %s on %s ";
+var eventSummary = "The %s lunch is, %s on %s ";
 
 // Only used for the card on the companion app
-var cardContentSummary = "%s at %s on %s ";
+var cardContentSummary = "%s on %s ";
 
 // More info text
 var haveEventsRepromt = "Give me an lunch number to hear more information.";

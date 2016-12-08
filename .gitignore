@@ -1,5 +1,6 @@
-
 skill-sample-nodejs-calendar-reader.pdf
 .DS_Store
 node_modules
 Archive.zip
+*.swo
+*.swp
