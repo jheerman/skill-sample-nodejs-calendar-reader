@@ -14,10 +14,10 @@ var alexa;
 var APP_ID = undefined; 
 
 // URL to get the .ics from, in this instance we are getting from Google
-var URL = "https://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";    
+var URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";    
 
 // Skills name 
-var skillName = "LW Lunch Menu:";
+var skillName = "Walter's Lunch Menu:";
 
 // Message when the skill is first called
 var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like? ";
@@ -114,7 +114,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     // Pick out the data relevant to us and create an object to hold it.
                     var eventData = {
                         summary: removeTags(ev.summary),
-                        location: removeTags(ev.location),
+                        //location: removeTags(ev.location),
                         description: removeTags(ev.description),
                         start: ev.start
                     }
@@ -150,20 +150,20 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         if (relevantEvents[0] != null) {
                             var date = new Date(relevantEvents[0].start);
-                            output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), relevantEvents[0].location, date.toDateString() + ".");
+                            output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), date.toDateString() + ".");
                         }
                         if (relevantEvents[1]) {
                             var date = new Date(relevantEvents[1].start);
-                            output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), relevantEvents[1].location, date.toDateString() + ".");
+                            output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), date.toDateString() + ".");
                         }
                         if (relevantEvents[2]) {
                             var date = new Date(relevantEvents[2].start);
-                            output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), relevantEvents[2].location, date.toDateString() + ".");
+                            output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), date.toDateString() + ".");
                         }
 
                         for (var i = 0; i < relevantEvents.length; i++) {
                             var date = new Date(relevantEvents[i].start);
-                            cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), removeTags(relevantEvents[i].location), date.toDateString()+ "\n\n");
+                            cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), date.toDateString()+ "\n\n");
                         }
 
                         output += eventNumberMoreInfoText;
@@ -262,7 +262,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 // register handlers
 exports.handler = function (event, context, callback) {
     alexa = Alexa.handler(event, context);
-    alexa.AppId = APP_ID;
+    alexa.appId = APP_ID;
     alexa.registerHandlers(newSessionHandlers, startSearchHandlers, descriptionHandlers);
     alexa.execute();
 };
