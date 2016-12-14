@@ -23,7 +23,7 @@ var skillName = "Walter's Lunch Menu:";
 var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like? ";
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch on the 28th of March? What's for lunch tomorrow?  What would you like to know?";
+var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch tomorrow? What's for lunch on March 28? What would you like to know?";
 
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about lunch one";
 
@@ -68,7 +68,7 @@ var killSkillMessage = "Ok, great, see you next time.";
 var eventNumberMoreInfoText = "You can say the lunch number for more information.";
 
 // used for title on companion app
-var cardTitle = "Lunches";
+var cardTitle = "Limestone Walters Lunches";
 
 // output for Alexa
 var output = "";
@@ -114,7 +114,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     // Pick out the data relevant to us and create an object to hold it.
                     var eventData = {
                         summary: removeTags(ev.summary),
-                        //location: removeTags(ev.location),
                         description: removeTags(ev.description),
                         start: ev.start
                     }
