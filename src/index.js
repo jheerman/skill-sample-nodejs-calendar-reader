@@ -214,14 +214,15 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         var repromt = " Would you like to hear another event?";
         var slotValue = this.event.request.intent.slots.number.value;
 
+		//Handle Yes/No here, if user doesn't specify a number, it will give out of range error
+
         // parse slot value
         var index = parseInt(slotValue) - 1;
 
         if (relevantEvents[index]) {
-
             // use the slot value as an index to retrieve description from our relevant array
 			var lunchDescription = removeTags(relevantEvents[index].description);
-			if (lunchDescription == "" || lunchDescription == undefined || lunchDescription == null)
+			if (!lunchDescription)
 				output = missingDescription;
 			else
 				output = descriptionMessage + lunchDescription
