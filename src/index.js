@@ -20,7 +20,7 @@ var URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%4
 var skillName = "Walter's Lunch Menu:";
 
 // Message when the skill is first called
-var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like? ";
+var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like to do? ";
 
 // Message for help intent
 var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch tomorrow? What's for lunch on March 28? What would you like to know?";
@@ -31,7 +31,7 @@ var descriptionStateHelpMessage = "Here are some things you can say: Tell me abo
 var NoDataMessage = "Sorry there isn't a lunch scheduled. Would you like to search again?";
 
 // Used to tell user skill is closing
-var shutdownMessage = "Ok thanks.";
+var shutdownMessage = "Ok. I'm going back to sleep now.";
 
 // Message used when only 1 event is found allowing for difference in punctuation 
 var oneEventMessage = "There is 1 lunch ";
@@ -60,10 +60,12 @@ var dateOutOfRange = "Date is out of range please choose another date";
 var eventOutOfRange = "Lunch number is out of range please choose another lunch";
 
 // Used when an event is asked for
-var descriptionMessage = "Here's the description ";
+var descriptionMessage = "Here's the description. ";
+
+var missingDescription = "I'm sorry, but there isn't any more information on this lunch."
 
 // Used when an event is asked for
-var killSkillMessage = "Ok, great, see you next time.";
+var killSkillMessage = "No problem, see you next time.";
 
 var eventNumberMoreInfoText = "You can say the lunch number for more information.";
 
@@ -218,7 +220,11 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         if (relevantEvents[index]) {
 
             // use the slot value as an index to retrieve description from our relevant array
-            output = descriptionMessage + removeTags(relevantEvents[index].description);
+			var lunchDescription = removeTags(relevantEvents[index].description);
+			if (lunchDescription == "" || lunchDescription == undefined || lunchDescription == null)
+				output = missingDescription;
+			else
+				output = descriptionMessage + lunchDescription
 
             output += repromt;
 
@@ -234,7 +240,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
     'AMAZON.StopIntent': function () {
         this.emit(':tell', killSkillMessage);
-    },
+    } ,
 
     'AMAZON.CancelIntent': function () {
         this.emit(':tell', killSkillMessage);
