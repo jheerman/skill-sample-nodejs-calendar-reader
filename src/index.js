@@ -122,6 +122,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     var eventData = {
                         summary: removeTags(ev.summary),
                         description: removeTags(ev.description),
+						location: removeTags(ev.location),
                         start: ev.start
                     }
                     // add the newly created object to an array for use later.
