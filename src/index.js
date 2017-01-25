@@ -24,7 +24,7 @@ var skillName = "Lunch Lady";
 var welcomeMessage = "You can ask what's for lunch today, tomorrow, or search by date."; 
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch tomorrow? What's for lunch next Wednesday? What's for lunch on March 28? What would you like to know?";
+var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch next Wednesday? What's for lunch on March 28?"; 
 
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about lunch one.";
 
@@ -32,7 +32,7 @@ var descriptionStateHelpMessage = "Here are some things you can say: Tell me abo
 var NoDataMessage = "Sorry there is nothing scheduled. Would you like to search again?";
 
 // Used to tell user skill is closing
-var shutdownMessage = "Ok. I'm going back to sleep now.";
+var shutdownMessage = "Peace out.";
 
 // Message used when only 1 event is found allowing for difference in punctuation 
 var oneEventMessage = "There is 1 lunch. ";
@@ -84,6 +84,10 @@ var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
         this.emit(':ask', skillName, welcomeMessage);
+    },
+
+	'Unhandled': function () {
+        this.emit(':ask', HelpMessage, HelpMessage);
     },
 };
 
@@ -277,7 +281,7 @@ exports.handler = function (event, context, callback) {
 
 // Remove HTML tags from string
 function removeTags(str) {
-    return str.replace(/<(?:.|\n)*?>/gm, '');
+	if (str) return str.replace(/<(?:.|\n)*?>/gm, '');
 }
 
 // Given an AMAZON.DATE slot value parse out to usable JavaScript Date object
