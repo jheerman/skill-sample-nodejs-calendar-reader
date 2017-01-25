@@ -1,5 +1,8 @@
+searchIntent what is on the menu for {date}
 searchIntent whats on the menu for {date}
+searchIntent what is on the menu {date}
 searchIntent whats on the menu {date}
+searchIntent what is for lunch {date}
 searchIntent whats for lunch {date}
 searchIntent whats for lunch on {date}
 searchIntent tell me whats for lunch {date}

@@ -11,24 +11,25 @@ var states = {
 var alexa;
 
 //OPTIONAL: replace with "amzn1.ask.skill.[your-unique-value-here]";
-var APP_ID = undefined; 
+var APP_ID = "amzn1.ask.skill.37841ada-520e-4ed8-bc91-ac6d549c85b3";
 
 // URL to get the .ics from, in this instance we are getting from Google
-var URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";    
+var LW_LUNCH_URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";    
+var TEST_URL = "";
 
 // Skills name 
-var skillName = "Walter's Lunch Menu";
+var skillName = "Lunch Lady";
 
 // Message when the skill is first called
-var welcomeMessage = "You can ask what's for lunch today. search the menu by date. or say help. What would you like to do? ";
+var welcomeMessage = "You can ask what's for lunch today, tomorrow, or search by date."; 
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch tomorrow? What's for lunch on March 28? What would you like to know?";
+var HelpMessage = "Here are some things you can say: What's for lunch today? What's for lunch tomorrow? What's for lunch next Wednesday? What's for lunch on March 28? What would you like to know?";
 
 var descriptionStateHelpMessage = "Here are some things you can say: Tell me about lunch one.";
 
 // Used when there is no data within a time period
-var NoDataMessage = "Sorry there isn't a lunch scheduled. Would you like to search again?";
+var NoDataMessage = "Sorry there is nothing scheduled. Would you like to search again?";
 
 // Used to tell user skill is closing
 var shutdownMessage = "Ok. I'm going back to sleep now.";
@@ -40,7 +41,7 @@ var oneEventMessage = "There is 1 lunch. ";
 var multipleEventMessage = "There are %d meals. ";
 
 // text used after the number of events has been said
-var scheduledEventMessage = "scheduled for this time frame. I've sent the details to your Alexa app: ";
+var scheduledEventMessage = "scheduled for this time.";
 
 var firstThreeMessage = "Here are the first %d. ";
 
@@ -65,12 +66,12 @@ var descriptionMessage = "Here's the description. ";
 var missingDescription = "I'm sorry, but there isn't any more information on this lunch."
 
 // Used when an event is asked for
-var killSkillMessage = "No problem, talk to you later.";
+var killSkillMessage = "Later.";
 
 var eventNumberMoreInfoText = "You can say the lunch number for more information.";
 
 // used for title on companion app
-var cardTitle = "Limestone Walters Lunches";
+var cardTitle = "Lunch Lady";
 
 // output for Alexa
 var output = "";
@@ -82,7 +83,7 @@ var relevantEvents = new Array();
 var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
-        this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
+        this.emit(':ask', skillName, welcomeMessage);
     },
 };
 
@@ -108,7 +109,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         var parent = this;
 
         // Using the iCal library I pass the URL of where we want to get the data from.
-        ical.fromURL(URL, {}, function (err, data) {
+        ical.fromURL(LW_LUNCH_URL, {}, function (err, data) {
             // Loop through all iCal data found
             for (var k in data) {
                 if (data.hasOwnProperty(k)) {
