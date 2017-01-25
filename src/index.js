@@ -15,7 +15,7 @@ var APP_ID = "amzn1.ask.skill.37841ada-520e-4ed8-bc91-ac6d549c85b3";
 
 // URL to get the .ics from, in this instance we are getting from Google
 var LW_LUNCH_URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";    
-var TEST_URL = "";
+var TEST_URL = "http://events.stanford.edu/eventlist.ics";
 
 // Skills name 
 var skillName = "Lunch Lady";
