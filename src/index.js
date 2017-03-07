@@ -17,27 +17,27 @@ var APP_ID = undefined;
 var URL = "http://events.stanford.edu/eventlist.ics";
 
 // Skills name 
-var skillName = "Events calendar:";
+var skillName = "Lunch menu:";
 
 // Message when the skill is first called
-var welcomeMessage = "You can ask for the events today. Search for events by date. or say help. What would you like? ";
+var welcomeMessage = "You can ask for the menu today. Search the menu by date. or say help. What would you like? ";
 
 // Message for help intent
-var HelpMessage = "Here are some things you can say: Is there an event today? Is there an event on the 18th of July? What are the events next week? Are there any events tomorrow?  What would you like to know?";
+var HelpMessage = "Here are some things you can say: Whats for lunch today? What's for lunch on the 18th of July? What is for lunch next week? Whats for lunch tomorrow?  What would you like to know?";
 
-var descriptionStateHelpMessage = "Here are some things you can say: Tell me about event one";
+var descriptionStateHelpMessage = "Here are some things you can say: Tell me about lunch one";
 
 // Used when there is no data within a time period
-var NoDataMessage = "Sorry there aren't any events scheduled. Would you like to search again?";
+var NoDataMessage = "Sorry there isn't a lunch scheduled. Would you like to search again?";
 
 // Used to tell user skill is closing
 var shutdownMessage = "Ok see you again soon.";
 
 // Message used when only 1 event is found allowing for difference in punctuation 
-var oneEventMessage = "There is 1 event ";
+var oneEventMessage = "There is 1 lunch ";
 
 // Message used when more than 1 event is found allowing for difference in punctuation 
-var multipleEventMessage = "There are %d events ";
+var multipleEventMessage = "There are %d lunches ";
 
 // text used after the number of events has been said
 var scheduledEventMessage = "scheduled for this time frame. I've sent the details to your Alexa app: ";
@@ -51,7 +51,7 @@ var eventSummary = "The %s event is, %s at %s on %s ";
 var cardContentSummary = "%s at %s on %s ";
 
 // More info text
-var haveEventsRepromt = "Give me an event number to hear more information.";
+var haveEventsRepromt = "Give me an lunch number to hear more information.";
 
 // Error if a date is out of range
 var dateOutOfRange = "Date is out of range please choose another date";
@@ -65,10 +65,10 @@ var descriptionMessage = "Here's the description ";
 // Used when an event is asked for
 var killSkillMessage = "Ok, great, see you next time.";
 
-var eventNumberMoreInfoText = "You can say the event number for more information.";
+var eventNumberMoreInfoText = "You can say the lunch number for more information.";
 
 // used for title on companion app
-var cardTitle = "Events";
+var cardTitle = "Lunch";
 
 // output for Alexa
 var output = "";
