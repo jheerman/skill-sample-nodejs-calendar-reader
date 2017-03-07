@@ -4,3 +4,6 @@ skill-sample-nodejs-calendar-reader.pdf
 Archive.zip
 
 node_modules
+
+*.swo
+*.swp
