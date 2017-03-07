@@ -45,7 +45,7 @@ var scheduledEventMessage = "scheduled: ";
 var firstThreeMessage = "Here are the first %d. ";
 
 // the values within the {} are swapped out for variables
-var eventSummary = "The %s lunch is, %s ";
+var eventSummary = "The %s lunch is, %s on %s";
 
 // Only used for the card on the companion app
 var cardContentSummary = "%s on %s ";
