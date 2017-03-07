@@ -40,7 +40,7 @@ var oneEventMessage = "There is 1 lunch ";
 var multipleEventMessage = "There are %d lunches ";
 
 // text used after the number of events has been said
-var scheduledEventMessage = "scheduled for this time frame: ";
+var scheduledEventMessage = "scheduled: ";
 
 var firstThreeMessage = "Here are the first %d. ";
 
@@ -48,7 +48,7 @@ var firstThreeMessage = "Here are the first %d. ";
 var eventSummary = "The %s lunch is, %s on %s ";
 
 // Only used for the card on the companion app
-var cardContentSummary = "%s at %s on %s ";
+var cardContentSummary = "%s on %s ";
 
 // More info text
 var haveEventsRepromt = "Give me an lunch number to hear more information.";
@@ -173,7 +173,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                             for (var i = 0; i < relevantEvents.length; i++) {
                                 var date = new Date(relevantEvents[i].start);
-                                cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), removeTags(relevantEvents[i].location), date.toDateString()+ "\n\n");
+                                cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), date.toDateString()+ "\n\n");
                             }
 
                             output += eventNumberMoreInfoText;
@@ -224,7 +224,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     'eventIntent': function () {
 
-        var repromt = " Would you like to hear another lunch?";
+        var repromt = " . Would you like to hear another lunch?";
         var slotValue = this.event.request.intent.slots.number.value;
 
         // parse slot value
