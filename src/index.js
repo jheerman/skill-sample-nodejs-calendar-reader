@@ -14,7 +14,7 @@ var alexa;
 var APP_ID = undefined; 
 
 // URL to get the .ics from, in this instance we are getting from Stanford however this can be changed
-var URL = "http://events.stanford.edu/eventlist.ics";
+var URL = "http://calendar.google.com/calendar/ical/2jipnti4o3q82p43vuq8vkeh5o%40group.calendar.google.com/public/basic.ics";
 
 // Skills name 
 var skillName = "Lunch menu:";
@@ -40,12 +40,12 @@ var oneEventMessage = "There is 1 lunch ";
 var multipleEventMessage = "There are %d lunches ";
 
 // text used after the number of events has been said
-var scheduledEventMessage = "scheduled for this time frame. I've sent the details to your Alexa app: ";
+var scheduledEventMessage = "scheduled for this time frame: ";
 
 var firstThreeMessage = "Here are the first %d. ";
 
 // the values within the {} are swapped out for variables
-var eventSummary = "The %s event is, %s at %s on %s ";
+var eventSummary = "The %s lunch is, %s on %s ";
 
 // Only used for the card on the companion app
 var cardContentSummary = "%s at %s on %s ";
@@ -57,7 +57,7 @@ var haveEventsRepromt = "Give me an lunch number to hear more information.";
 var dateOutOfRange = "Date is out of range please choose another date";
 
 // Error if a event number is out of range
-var eventOutOfRange = "Event number is out of range please choose another event";
+var eventOutOfRange = "Lunch number is out of range please choose another lunch";
 
 // Used when an event is asked for
 var descriptionMessage = "Here's the description ";
@@ -160,15 +160,15 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                             if (relevantEvents[0] != null) {
                                 var date = new Date(relevantEvents[0].start);
-                                output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), relevantEvents[0].location, date.toDateString() + ".");
+                                output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), date.toDateString() + ".");
                             }
                             if (relevantEvents[1]) {
                                 var date = new Date(relevantEvents[1].start);
-                                output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), relevantEvents[1].location, date.toDateString() + ".");
+                                output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), date.toDateString() + ".");
                             }
                             if (relevantEvents[2]) {
                                 var date = new Date(relevantEvents[2].start);
-                                output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), relevantEvents[2].location, date.toDateString() + ".");
+                                output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), date.toDateString() + ".");
                             }
 
                             for (var i = 0; i < relevantEvents.length; i++) {
@@ -194,7 +194,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             });
         }
         else{
-            this.emit(":ask", "I'm sorry.  What day did you want me to look for events?", "I'm sorry.  What day did you want me to look for events?");
+            this.emit(":ask", "I'm sorry.  What day did you want me to look for lunch?", "I'm sorry.  What day did you want me to look for lunch?");
         }
     },
 
@@ -224,7 +224,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     'eventIntent': function () {
 
-        var repromt = " Would you like to hear another event?";
+        var repromt = " Would you like to hear another lunch?";
         var slotValue = this.event.request.intent.slots.number.value;
 
         // parse slot value
