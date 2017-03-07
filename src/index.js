@@ -45,7 +45,7 @@ var scheduledEventMessage = "scheduled: ";
 var firstThreeMessage = "Here are the first %d. ";
 
 // the values within the {} are swapped out for variables
-var eventSummary = "The %s lunch is, %s on %s ";
+var eventSummary = "The %s lunch is, %s ";
 
 // Only used for the card on the companion app
 var cardContentSummary = "%s on %s ";
@@ -160,20 +160,20 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                             if (relevantEvents[0] != null) {
                                 var date = new Date(relevantEvents[0].start);
-                                output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), date.toDateString() + ".");
+                                output += utils.format(eventSummary, "First", removeTags(relevantEvents[0].summary), date.toLocaleDateString('en-US') + ".  ");
                             }
                             if (relevantEvents[1]) {
                                 var date = new Date(relevantEvents[1].start);
-                                output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), date.toDateString() + ".");
+                                output += utils.format(eventSummary, "Second", removeTags(relevantEvents[1].summary), date.toLocaleDateString('en-US') + ".  ");
                             }
                             if (relevantEvents[2]) {
                                 var date = new Date(relevantEvents[2].start);
-                                output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), date.toDateString() + ".");
+                                output += utils.format(eventSummary, "Third", removeTags(relevantEvents[2].summary), date.toLocaleDateString('en-US') + ".");
                             }
 
                             for (var i = 0; i < relevantEvents.length; i++) {
                                 var date = new Date(relevantEvents[i].start);
-                                cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), date.toDateString()+ "\n\n");
+                                cardContent += utils.format(cardContentSummary, removeTags(relevantEvents[i].summary), date.toLocaleDateString('en-US')+ "\n\n");
                             }
 
                             output += eventNumberMoreInfoText;
