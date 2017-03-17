@@ -1,11 +1,13 @@
 // Karma configuration
 // Generated on Thu Mar 16 2017 10:45:11 GMT-0500 (CDT)
 
+require("babel-register");
+
 module.exports = function(config) {
   "use strict";
 
   var files = (process.env.npm_config_single_file) ? 
-				process.env.npm_config_single_file : 'tests/**/*_spec.js';
+				process.env.npm_config_single_file : 'tests/test-index.js';
 
   var fileWatch = (process.env.npm_config_auto_watch) ? 
 					process.env.npm_config_auto_watch : false;
